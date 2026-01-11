@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Brothers Jesse</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #0a0a0a;
+            color: #e8e8e8;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(219, 39, 119, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            z-index: 2;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .band-name {
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 0.3rem;
+            background: linear-gradient(135deg, #f59e0b, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #a0a0a0;
+            font-style: italic;
+            margin-bottom: 2rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #666;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 6rem;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #f0f0f0;
+            letter-spacing: 0.1rem;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #c0c0c0;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .influences {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .influence-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            width: 200px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .influence-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .influence-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #f59e0b;
+        }
+
+        .music-section {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 4rem 2rem;
+            border-radius: 1rem;
+        }
+
+        .player-placeholder {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            padding: 3rem;
+            text-align: center;
+            color: #808080;
+            margin: 2rem 0;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1));
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            color: #e8e8e8;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .band-name {
+                font-size: 3rem;
+                letter-spacing: 0.2rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .influences {
+                gap: 1.5rem;
+            }
+
+            .influence-card {
+                width: 150px;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="band-name">The Brothers Jesse</h1>
+            <p class="tagline">Where Classic Meets Contemporary</p>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </div>
+
+    <div class="container">
+        <section id="about">
+            <h2>About</h2>
+            <div class="about-content">
+                <p>
+                    The Brothers Jesse is a dynamic duo creating rich, layered music that bridges the gap between classic rock's golden age and today's modern production sensibilities.
+                </p>
+                <p>
+                    Two Jesses, one vision: to craft songs that blend melodic sophistication, atmospheric soundscapes, and meticulous production. With the help of talented collaborating musicians and cutting-edge VST technology, we produce full-band arrangements that honor the spirit of our influences while forging our own path.
+                </p>
+            </div>
+
+            <div class="influences">
+                <div class="influence-card">
+                    <h3>The Beatles</h3>
+                    <p>Melodic craftsmanship</p>
+                </div>
+                <div class="influence-card">
+                    <h3>Pink Floyd</h3>
+                    <p>Sonic atmospheres</p>
+                </div>
+                <div class="influence-card">
+                    <h3>Steely Dan</h3>
+                    <p>Studio precision</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="music" class="music-section">
+            <h2>Listen</h2>
+            <div class="player-placeholder">
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">🎵 Music Player</p>
+                <p>Embed your Spotify, Bandcamp, or SoundCloud player here</p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Connect</h2>
+            <p style="font-size: 1.2rem; color: #c0c0c0; margin-bottom: 1rem;">
+                Get in touch for bookings, collaborations, or just to say hello
+            </p>
+            <div class="social-links">
+                <a href="mailto:info@thebrothersJesse.com" class="social-link">Email</a>
+                <a href="#" class="social-link">Spotify</a>
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">Facebook</a>
+                <a href="#" class="social-link">YouTube</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 The Brothers Jesse. All rights reserved.</p>
+    </footer>
+</body>
+</html>
